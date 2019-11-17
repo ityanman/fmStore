@@ -1,0 +1,7 @@
+# Project exclude paths
+/common/target/
+/dao/target/
+/interface/target/
+/pojo/target/
+/service_sellergoods/target/
+/web_manager/target/

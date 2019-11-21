@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BrandServiceImpl implements BrandService {
@@ -70,5 +71,11 @@ public class BrandServiceImpl implements BrandService {
             brandDao.deleteByExample(brandQuery);
         }
 
+    }
+
+    //查询品牌选项
+    @Override
+    public List<Map> selectOptionList() {
+        return brandDao.selectOptionList();
     }
 }

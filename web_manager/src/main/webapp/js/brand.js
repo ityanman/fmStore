@@ -62,7 +62,6 @@ new Vue({
             }
         },
         deleteBrand:function () {
-            //alert("删除");
             var _this = this;
             //使用qs插件 处理数组
             axios.post('/brand/delete.do',Qs.stringify({ids: _this.selectedIds},{ indices: false }))

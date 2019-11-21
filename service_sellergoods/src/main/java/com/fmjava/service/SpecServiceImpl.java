@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+
 @Transactional
 @Service
 public class SpecServiceImpl implements SpecService{
@@ -103,5 +105,11 @@ public class SpecServiceImpl implements SpecService{
             }
 
         }
+    }
+
+    //查询规格选项
+    @Override
+    public List<Map> selectOptionList() {
+        return specDao.selectOptionList();
     }
 }

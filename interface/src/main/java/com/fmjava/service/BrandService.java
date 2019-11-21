@@ -4,6 +4,7 @@ import com.fmjava.core.pojo.entity.PageResult;
 import com.fmjava.core.pojo.good.Brand;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BrandService {
     public List<Brand> findAllBrand();
@@ -19,4 +20,7 @@ public interface BrandService {
 
     //根据id删除brand
     void deleteBrand(Long[] ids);
+
+    //查询品牌选项
+    List<Map> selectOptionList();
 }

@@ -28,4 +28,6 @@ public interface ItemCatDao {
     int updateByPrimaryKeySelective(ItemCat record);
 
     int updateByPrimaryKey(ItemCat record);
+
+    Long findParentIdById(Long id);
 }

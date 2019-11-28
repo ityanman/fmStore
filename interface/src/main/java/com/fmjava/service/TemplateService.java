@@ -3,6 +3,9 @@ package com.fmjava.service;
 import com.fmjava.core.pojo.entity.PageResult;
 import com.fmjava.core.pojo.template.TypeTemplate;
 
+import java.util.List;
+import java.util.Map;
+
 public interface TemplateService {
     PageResult findPage(Integer page, Integer pageSize, TypeTemplate template);
 
@@ -16,4 +19,7 @@ public interface TemplateService {
 
     //删除模板
     void delete(Long[] ids);
+
+    //查询规格
+    List<Map> findSpecOption(Long id);
 }

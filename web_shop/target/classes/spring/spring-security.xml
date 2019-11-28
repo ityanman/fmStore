@@ -73,7 +73,7 @@
     <!-- 给当前服务起个名 -->
     <dubbo:application name="fmjava-shop-web" />
     <!-- 配置连接zookeeper地址  -->
-    <dubbo:registry address="zookeeper://192.168.64.138:2181"/>
+    <dubbo:registry address="zookeeper://192.168.64.139:2181"/>
     <!-- 把sellerService通过属性注入的方式注入到UserDetailsService中 -->
     <dubbo:reference id="sellerService" interface="com.fmjava.service.SellerService"/>
 

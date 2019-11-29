@@ -17,7 +17,8 @@ new Vue({
         },
         imageList:[],
         specList:[],
-        specSelItems:[]
+        specSelItems:[],
+        itemList:[],
     },
     methods: {
         loadCateData: function (id) {
@@ -119,7 +120,30 @@ new Vue({
             }
 
             console.log(this.specSelItems);
+            this.createItem();
 
+        },
+        createItem:function () {
+
+            var rowList = [{spec:{},price:0,num:9999,status:'0',isDefault:'0'}];
+
+            for (var i = 0; i<this.specSelItems.length;i++){
+                var  spec =  this.specSelItems[i];
+                var specName =spec.specName;
+                var specOption = spec.specOption;
+                var newRowList = [];
+                for (var j=0; j < rowList.length; j++){
+                    var oldRow = rowList[j];
+                    for (var k = 0; k< specOption.length; k++){
+                        var newRow = JSON.parse(JSON.stringify(oldRow));
+                        newRow.spec[specName]=specOption[k];
+                        newRowList.push(newRow);
+                    }
+                }
+                rowList = newRowList;
+            }
+            this.itemList = rowList;
+            console.log(this.itemList);
         },
         /*
         * 给定一个集合

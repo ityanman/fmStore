@@ -179,8 +179,7 @@
 								<table class="table table-bordered table-striped table-hover dataTable">
 									<thead>
 									<tr>
-										<th class="sorting">屏幕尺寸</th>
-										<th class="sorting">网络制式</th>
+										<th class="sorting" v-for="specItem in specSelItems">{{specItem.specName}}</th>
 										<th class="sorting">价格</th>
 										<th class="sorting">库存</th>
 										<th class="sorting">是否启用</th>
@@ -188,38 +187,17 @@
 									</tr>
 									</thead>
 									<tbody>
-									<tr>
-										<td>4.0</td>
-										<td>3G</td>
+									<tr v-for="row in itemList">
+										<td v-for="spec in specSelItems">
+											{{row.spec[spec.specName]}}
+										</td>
+
 										<td><input class="form-control"  placeholder="价格"></td>
 										<td><input class="form-control" placeholder="库存数量"></td>
 										<td><input type="checkbox" ></td>
 										<td><input type="checkbox" ></td>
 									</tr>
-									<tr>
-										<td>4.0</td>
-										<td>3G</td>
-										<td><input class="form-control"  placeholder="价格"></td>
-										<td><input class="form-control" placeholder="库存数量"></td>
-										<td><input type="checkbox" ></td>
-										<td><input type="checkbox" ></td>
-									</tr>
-									<tr>
-										<td>4.0</td>
-										<td>3G</td>
-										<td><input class="form-control"  placeholder="价格"></td>
-										<td><input class="form-control" placeholder="库存数量"></td>
-										<td><input type="checkbox" ></td>
-										<td><input type="checkbox" ></td>
-									</tr>
-									<tr>
-										<td>4.0</td>
-										<td>3G</td>
-										<td><input class="form-control"  placeholder="价格"></td>
-										<td><input class="form-control" placeholder="库存数量"></td>
-										<td><input type="checkbox" ></td>
-										<td><input type="checkbox" ></td>
-									</tr>
+
 									</tbody>
 								</table>
 							</div>

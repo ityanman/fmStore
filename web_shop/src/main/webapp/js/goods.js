@@ -19,6 +19,11 @@ new Vue({
         specList:[],
         specSelItems:[],
         itemList:[],
+        goodsEntity:{
+            goods:{},
+            goodsDesc:{},
+            itemList:{}
+        }//最终保存商品的实体
     },
     methods: {
         loadCateData: function (id) {
@@ -159,6 +164,32 @@ new Vue({
             }
             return null;
         },
+        saveGoods:function () {//保存商品
+
+            this.goodsEntity.goods.category1Id = this.catSelected1;
+            this.goodsEntity.goods.category2Id = this.catSelected2;
+            this.goodsEntity.goods.category3Id = this.catSelected3;
+            this.goodsEntity.goods.typeTemplateId=this.typeId,
+            this.goodsEntity.goods.brandId=this.selBrand,
+            this.goodsEntity.goods.isEnableSpec=this.isEnableSpec,
+
+            this.goodsEntity.goodsDesc.itemImages=this.imageList,
+            this.goodsEntity.goodsDesc.specificationItems=this.specSelItems,
+            this.goodsEntity.goodsDesc.introduction=UE.getEditor('editor').getContent()
+
+            this.goodsEntity.itemList = this.itemList;
+
+            //发送请求
+            axios.post("/goods/add.do",this.goodsEntity)
+                .then(function (response) {
+                    console.log(response.data);
+                    location.href="goods.html";
+                }).catch(function (reason) {
+                alert(reason.data.message);
+            });
+
+        }
+
     },
     watch: { //监听属性的变化
         typeId:function(newValue, oldValue) {

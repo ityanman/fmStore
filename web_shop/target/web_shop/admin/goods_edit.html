@@ -192,10 +192,10 @@
 											{{row.spec[spec.specName]}}
 										</td>
 
-										<td><input class="form-control"  placeholder="价格"></td>
-										<td><input class="form-control" placeholder="库存数量"></td>
-										<td><input type="checkbox" ></td>
-										<td><input type="checkbox" ></td>
+										<td><input class="form-control" v-model="row.price" placeholder="价格"></td>
+										<td><input class="form-control" v-model="row.num" placeholder="库存数量"></td>
+										<td><input type="checkbox" v-model="row.status"></td>
+										<td><input type="checkbox" v-model="row.isDefault"></td>
 									</tr>
 
 									</tbody>

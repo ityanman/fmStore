@@ -53,8 +53,8 @@
 							<div class="search">
 								<form action="" class="sui-form form-inline">
 									<div class="input-append">
-										<input type="text" id="autocomplete" type="text" class="input-error input-xxlarge" />
-										<a class="sui-btn btn-xlarge btn-danger" href="search.html">搜索</a>
+										<input type="text" id="autocomplete" v-model="searchContent" type="text" class="input-error input-xxlarge" />
+										<a class="sui-btn btn-xlarge btn-danger" :href="'search.html?sc='+searchContent">搜索</a>
 									</div>
 								</form>
 							</div>
@@ -1073,7 +1073,8 @@
 	new Vue({
 		el:"#app",
 		data:{
-			contentList:[]
+			contentList:[],
+			searchContent:''
 		},
 		methods:{
 			loadCategoryDataById: function (categoryId) {

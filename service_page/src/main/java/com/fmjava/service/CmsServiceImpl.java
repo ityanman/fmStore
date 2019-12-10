@@ -8,7 +8,6 @@ import com.fmjava.core.pojo.good.Goods;
 import com.fmjava.core.pojo.good.GoodsDesc;
 import com.fmjava.core.pojo.item.Item;
 import com.fmjava.core.pojo.item.ItemCat;
-import com.fmjava.core.pojo.item.ItemCatQuery;
 import com.fmjava.core.pojo.item.ItemQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;

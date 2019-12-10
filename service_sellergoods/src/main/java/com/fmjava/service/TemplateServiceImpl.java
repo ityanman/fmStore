@@ -10,10 +10,12 @@ import com.fmjava.core.pojo.specification.SpecificationOption;
 import com.fmjava.core.pojo.specification.SpecificationOptionQuery;
 import com.fmjava.core.pojo.template.TypeTemplate;
 import com.fmjava.core.pojo.template.TypeTemplateQuery;
+import com.fmjava.utils.Constants;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.mysql.cj.xdevapi.JsonArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
@@ -27,8 +29,26 @@ public class TemplateServiceImpl implements TemplateService {
     TypeTemplateDao typeTemplateDao;
     @Autowired
     SpecificationOptionDao specificationOptionDao;
+    @Autowired
+    RedisTemplate redisTemplate;
     @Override
     public PageResult findPage(Integer page, Integer pageSize, TypeTemplate template) {
+        //缓存品牌和规格
+        if (!redisTemplate.hasKey(Constants.BRAND_LIST_REDIS) || !redisTemplate.hasKey(Constants.SPEC_LIST_REDIS)){
+        //取出所有的模板数据
+            List<TypeTemplate> typeTemplates = typeTemplateDao.selectByExample(null);
+            //存品牌
+            for (TypeTemplate typeTemplate : typeTemplates) {
+                String brandList = typeTemplate.getBrandIds();
+                //把字符串转换为集合存入redis
+                List<Map> brandMap = JSON.parseArray(brandList, Map.class);
+                redisTemplate.boundHashOps(Constants.BRAND_LIST_REDIS).put(typeTemplate.getName(),brandMap);
+                //存规格
+                List<Map> specOption = this.findSpecOption(typeTemplate.getId());
+                redisTemplate.boundHashOps(Constants.SPEC_LIST_REDIS).put(typeTemplate.getId(),specOption);
+
+            }
+        }
         PageHelper.startPage(page,pageSize);
         TypeTemplateQuery query = new TypeTemplateQuery();
         if (template!=null){

@@ -3,7 +3,6 @@ package com.fmjava.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.fmjava.core.dao.ad.ContentDao;
 import com.fmjava.core.pojo.ad.Content;
-import com.fmjava.core.pojo.ad.ContentCategoryQuery;
 import com.fmjava.core.pojo.ad.ContentQuery;
 import com.fmjava.core.pojo.entity.PageResult;
 import com.fmjava.utils.Constants;
